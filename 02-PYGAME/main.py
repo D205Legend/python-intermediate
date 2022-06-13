@@ -53,6 +53,10 @@ while True:
                 playerX_change = 4
             if event.key == pygame.K_LEFT:
                 playerX_change = -4
+            if event.key == pygame.K_SPACE:
+                bullet_state = "fire"
+                bulletX = playerX + 15
+                bulletY = playerY
         if event.type == pygame.KEYUP:
             playerX_change = 0        
 
@@ -66,10 +70,12 @@ while True:
     if enemyX > 736 or enemyX < 0:
         enemyX_change = - enemyX_change
         enemyY += 20
+    if bullet_state == "fire":
+        bulletY -= bulletY_change
+        fire_bullet(bulletX, bulletY)
 
     playerX = playerX + playerX_change
     enemyX = enemyX + enemyX_change
-    fire_bullet(200, 200)
 
     screen.blit(playerImg, (playerX, playerY))
     screen.blit(enemyImg, (enemyX, enemyY))  
