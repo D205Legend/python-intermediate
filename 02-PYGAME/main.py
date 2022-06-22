@@ -39,6 +39,10 @@ enemyImg = pygame.image.load('enemy.png')
 # Importing bullet image
 bulletImg = pygame.image.load('bullet.png')
 
+# Getting rectangles
+enmyRect = enemyImg.get_rect()
+bulletRect = bulletImg.get_rect()
+
 def fire_bullet(x, y):
     screen.blit(bulletImg, (x, y))
 
