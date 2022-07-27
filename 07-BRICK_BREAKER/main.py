@@ -3,6 +3,7 @@ import sys
 import pygame
 from pygame.locals import *
 from breaker import Breaker
+from player import Player
  
 pygame.init()
  
@@ -14,7 +15,8 @@ screen = pygame.display.set_mode((width, height))
 
 # Creating objects
 breaker = Breaker(width/2, height/2) 
- 
+player = Player(width/2, height * 0.9)
+
 # Game loop.
 while True:
   screen.fill((0, 0, 0))
@@ -25,11 +27,14 @@ while True:
       sys.exit()
   
   # Update.
-  breaker.move(3)
-  breaker.ifOnEdgeBounce()
+  mouseX, mouseY = pygame.mouse.get_pos()
+  player.x = mouseX
+  breaker.move(2)
+  breaker.ifOnEdgeBounce(screen)
 
   # Draw.
   breaker.draw(screen)
+  player.draw(screen)
 
   pygame.display.flip()
   fpsClock.tick(fps)
